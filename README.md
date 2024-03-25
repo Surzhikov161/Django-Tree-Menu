@@ -46,7 +46,7 @@
 1. Клонируйте репозиторий с GitHub:
 
 ```bash
-git clone https://github.com/alexpro2022/Django-tree_menu.git
+git clone https://github.com/Surzhikov161/Django-Tree-Menu.git
 ```
 
 2. Создайте и активируйте виртуальное окружение:
