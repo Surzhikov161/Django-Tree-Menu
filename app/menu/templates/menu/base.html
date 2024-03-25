@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load menu_tag %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+    {% for menu in menus %}
+        {% if menu.name == menu_name %}
+            {% draw_menu menu.name %}
+        {% else %}
+            <li><a href="{% url 'index' %}{{menu}}">{{menu}}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+</body>
+</html>

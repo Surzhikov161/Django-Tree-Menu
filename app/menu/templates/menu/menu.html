@@ -1,0 +1,19 @@
+{% if link %}
+    {% if menu.named_url %}
+        <li><a href="{{menu.named_url}}" target="_blank">{{menu.named_url}}</a></li>
+    {% elif menu.data %}
+        <li>{{menu.data}} <a href="{{menu.link}}" target="_blank">{{menu.link}}</a></li>
+    {% else %}
+        <li><a href="{% url 'index' %}{{link}}{{menu.get_url}}">{{menu}}</a></li>
+    {% endif %}
+{% else %}
+<li><a href="{% url 'index' %}{{menu}}">{{menu}}</a></li>
+{% endif %}
+{% if menu.name in path %}
+    <ul>
+        {% for submenu in menu.items.all %}
+            {% include 'menu/menu.html' with menu=submenu link=link|add:menu.get_url %}
+        {% endfor %}
+    </ul>
+    
+{% endif %}
