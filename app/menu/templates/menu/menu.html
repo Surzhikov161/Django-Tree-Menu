@@ -1,3 +1,5 @@
+{% load menu_tag %}
+
 {% if link %}
     {% if menu.named_url %}
         <li><a href="{{menu.named_url}}" target="_blank">{{menu.named_url}}</a></li>
@@ -11,9 +13,8 @@
 {% endif %}
 {% if menu.name in path %}
     <ul>
-        {% for submenu in menu.items.all %}
-            {% include 'menu/menu.html' with menu=submenu link=link|add:menu.get_url %}
+        {% for submenu in items|lookup:index %}
+            {% include 'menu/menu.html' with menu=submenu link=link|add:menu.get_url index=index|add:1 %}
         {% endfor %}
     </ul>
-    
 {% endif %}

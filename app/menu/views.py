@@ -15,7 +15,6 @@ def draw_menu(request, path):
     _path = path.split("/")
     context = {
         "menus": Menu.objects.all(),
-        "depth": len(set(_path)) - 1,
         "menu_name": _path[0],
         "path": _path,
     }
@@ -27,4 +26,3 @@ def draw_menu(request, path):
         "menu/base.html",
         context=context,
     )
-

@@ -35,7 +35,7 @@ class Menu(models.Model):
 
 
 class MenuItem(models.Model):
-    name = models.CharField(max_length=20, null=False, blank=True)
+    name = models.CharField(max_length=20, null=False, blank=True, unique=True)
     menu = models.ForeignKey(
         Menu,
         related_name="items",

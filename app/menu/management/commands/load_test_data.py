@@ -3,6 +3,7 @@ from django.core.management import BaseCommand
 from menu.models import Menu, MenuItem
 
 import random
+import uuid
 
 
 class Command(BaseCommand):
@@ -17,16 +18,17 @@ class Command(BaseCommand):
         depth: Optional[int] = 0,
     ):
         if depth == self.max_depth:
+            ran_str = uuid.uuid4().hex[:6].upper()
             if random.random() > 0.5:
                 MenuItem.objects.create(
-                    name=f"last item",
+                    name=f"last item {ran_str}",
                     menu=menu,
                     parent=parent,
                     data="Some data",
                 )
                 return
             MenuItem.objects.create(
-                name=f"last item",
+                name=f"last item {ran_str}",
                 menu=menu,
                 parent=parent,
                 link="http://endless.horse/",
@@ -35,8 +37,9 @@ class Command(BaseCommand):
             return
 
         for i in range(1, self.item_amount + 1):
+            ran_str = uuid.uuid4().hex[:6].upper()
             item = MenuItem.objects.create(
-                name=f"{i}-item in {depth} depth",
+                name=f"{i}-item in {depth} depth {ran_str}",
                 menu=menu,
                 parent=parent,
             )
